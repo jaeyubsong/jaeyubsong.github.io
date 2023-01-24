@@ -11,11 +11,23 @@
     {% if paths.size == 0 or page.layout == 'home' %}
       <!-- index page -->
       <span>{{ site.data.locales[site.lang].tabs.home | capitalize }}</span>
+    
+    {% elsif page.layout == 'blog' %}
 
+    <span>
+      <a href="{{ '/' | relative_url }}">
+        {{ site.data.locales[site.lang].tabs.home | capitalize }}
+      </a>
+    </span>
+
+    <span>
+        {{ site.data.locales[site.lang].tabs.blog | capitalize }}
+    </span>
+
+    
     {% else %}
 
       {% for item in paths %}
-
         {% if forloop.first %}
           <span>
             <a href="{{ '/' | relative_url }}">
@@ -24,7 +36,6 @@
           </span>
 
         {% elsif forloop.last %}
-
           {% if page.collection == 'tabs' %}
             <span>{{ site.data.locales[site.lang].tabs[item] | default: page.title }}</span>
           {% else %}
